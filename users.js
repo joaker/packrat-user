@@ -33,6 +33,17 @@ app.get("/", async (req, res) => {
     res.send("This is our main endpoint");
 });
 
+// GET all users
+app.get("/users", async (req, res) => {
+    User.find().then((users) => {
+        res.send(users);
+    }).catch((err) => {
+        if (err) {
+            throw err;
+        }
+    })
+})
+
 // GET a single user
 app.get("/users/:uid", async (req, res) => {
     const id = req.params.uid;
