@@ -85,7 +85,11 @@ app.post("/users", async (req, res) => {
 
 app.delete("/users/:uid", async (req, res) => {
     const id = req.params.uid;
-    User.findByIDAndDelete(id);
+    User.findByIDAndDelete(id).then(() => {
+        res.send(`user deleted with success... ${uid}`)
+    }).catch(() => {
+        res.sendStatus(404);
+    });
 });
 
 app.listen(process.env.PORT, () => {
