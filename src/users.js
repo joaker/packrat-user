@@ -18,8 +18,10 @@ async function connectMongoose() {
     }).then(() => {
         console.log("mongoose connected");
     });
+    console.log('loading user model')
     require("./user");
     User = mongoose.model("User");
+    console.log('user model loaded');
 }
 
 async function initialLoad() {
